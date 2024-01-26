@@ -11,5 +11,14 @@ fun UserDisplay.toDomain(): User {
         age = age,
         email = email
     )
+}
 
+fun User.toPresenter():UserDisplay{
+    return UserDisplay(
+        id = id,
+        fName = fName,
+        lName = fName,
+        age = age,
+        email = email
+    )
 }

@@ -9,17 +9,38 @@ import javax.inject.Inject
 
 class DataBaseRepositoryImpl @Inject constructor(private val userDao: UserDao): DataBaseRepository{
 
-    override suspend fun getAllUsers(): List<User> {
-        return userDao.getAll().map {
-            it.toDomain()
-        }
-    }
 
     override suspend fun insertUser(user: User) {
         userDao.insertAll(user.toEntity())
     }
 
-    override suspend fun deleteUser(user: User) {
-        userDao.delete(user.toEntity())
+    override suspend fun deleteUser(email: String, firstName: String, lastName: String, age: Int) {
+        userDao.deleteUser(
+            email = email,
+            firstName = firstName,
+            lastName = lastName,
+            age = age
+        )
     }
+
+
+    override suspend fun findUserByEmail(email: String): User? {
+        return userDao.findUserByEmail(email)?.toDomain()
+    }
+
+    override suspend fun findUser(
+        email: String,
+        firstName: String,
+        lastName: String,
+        age: Int
+    ): User? {
+        return userDao.findUserByAllInfo(
+            email = email,
+            firstName = firstName,
+            lastName = lastName,
+            age = age
+        )?.toDomain()
+    }
+
+
 }

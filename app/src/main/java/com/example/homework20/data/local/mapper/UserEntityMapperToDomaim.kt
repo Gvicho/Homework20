@@ -5,7 +5,7 @@ import com.example.homework20.domain.model.User
 
 fun UserEntity.toDomain():User{
     return User(
-        id = uid,
+        id = id,
         fName = firstName,
         lName = lastName,
         age = age,
@@ -15,7 +15,7 @@ fun UserEntity.toDomain():User{
 
 fun User.toEntity():UserEntity{
     return UserEntity(
-        uid = id,
+        id = id,
         firstName=fName  ,
         lastName=lName  ,
         age = age,

@@ -1,7 +1,10 @@
 package com.example.homework20.presentation.state
 
+import com.example.homework20.presentation.model.UserDisplay
+
 data class HomePageState(
     val isLoading:Boolean = false,
-    val isSuccess: String? = null,
+    val insertionIsSuccess: UserDisplay? = null,
+    val deletionIsSuccess: String? = null,
     val errorMessage:String? = null
 )

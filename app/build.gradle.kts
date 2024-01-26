@@ -65,12 +65,9 @@ kapt {
 
 
 dependencies {
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.20-1.0.14")
-
     implementation("androidx.room:room-runtime:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
-    annotationProcessor("androidx.room:room-compiler:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")// for room
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")// for room
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")// for okHttp logger interceptor
 
