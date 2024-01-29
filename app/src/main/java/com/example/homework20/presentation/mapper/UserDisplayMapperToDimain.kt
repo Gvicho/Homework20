@@ -7,7 +7,7 @@ fun UserDisplay.toDomain(): User {
     return User(
         id = id,
         fName = fName,
-        lName = fName,
+        lName = lName,
         age = age,
         email = email
     )
@@ -17,7 +17,7 @@ fun User.toPresenter():UserDisplay{
     return UserDisplay(
         id = id,
         fName = fName,
-        lName = fName,
+        lName = lName,
         age = age,
         email = email
     )

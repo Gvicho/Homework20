@@ -9,5 +9,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.homework20.presentation.screen.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_updateBottomSheetFragment"
+            app:destination="@id/updateBottomSheetFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/updateBottomSheetFragment"
+        android:name="com.example.homework20.presentation.screen.update_bottomsheet.UpdateBottomSheetFragment"
+        android:label="UpdateBottomSheetFragment" >
+        <argument
+            android:name="mail"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </dialog>
 </navigation>

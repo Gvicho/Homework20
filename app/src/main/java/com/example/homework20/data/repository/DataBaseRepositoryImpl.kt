@@ -8,6 +8,9 @@ import com.example.homework20.domain.repository.DataBaseRepository
 import javax.inject.Inject
 
 class DataBaseRepositoryImpl @Inject constructor(private val userDao: UserDao): DataBaseRepository{
+    override suspend fun updateUser(user: User) {
+        userDao.updateUser(user.toEntity())
+    }
 
 
     override suspend fun insertUser(user: User) {

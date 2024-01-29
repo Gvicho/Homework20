@@ -2,13 +2,17 @@ package com.example.homework20.presentation.screen
 
 import android.graphics.Color
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.example.homework20.R
 import com.example.homework20.databinding.FragmentHomeBinding
 import com.example.homework20.presentation.base.BaseFragment
 import com.example.homework20.presentation.event.HomePageEvent
+import com.example.homework20.presentation.extensions.safeNavigateWithArguments
 import com.example.homework20.presentation.extensions.showSnackBar
 import com.example.homework20.presentation.model.Status
 import com.example.homework20.presentation.model.UserDisplay
@@ -53,6 +57,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             successfulDeletion(it)
             outputStatusMessage(true)
         }
+
+        state.emailCheckForUpdateIsSuccess?.let {
+            openBottomSheetForUserUpdate(it)
+        }
+    }
+
+    private fun openBottomSheetForUserUpdate(user:UserDisplay){
+        val bundle = bundleOf("id" to user.id,"mail" to user.email)
+        findNavController().safeNavigateWithArguments(R.id.action_homeFragment_to_updateBottomSheetFragment,bundle)
     }
 
     private fun showErrorMessage(errorMessage:String){
@@ -102,8 +115,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     )
                 )
             }
-        }
 
+            btnUpdateUser.setOnClickListener {
+                val mail = edtEmailUpdate.text.toString()
+
+                viewModel.onEvent(HomePageEvent.UpdateUser(mail))
+            }
+        }
     }
 
     private fun outputStatusMessage(status:Boolean){
